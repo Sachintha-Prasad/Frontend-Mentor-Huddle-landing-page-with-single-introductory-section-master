@@ -1,0 +1,194 @@
+// google font link 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@400;600&display=swap');
+
+// variable 
+    // fonts 
+        $font-heading: 'Poppins', sans-serif;
+        $font-body: 'Open Sans', sans-serif;
+
+    // colors 
+        // primary
+            $violet: hsl(257, 40%, 49%);
+            $Soft-Magenta: hsl(300, 69%, 71%);
+
+    // display-widths
+        $mobile: 375px;
+        $tablet: 768px;
+
+//mixin 
+@mixin flex($direction, $align-items, $justify-content) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: $align-items;
+    justify-content: $justify-content;
+}
+
+// reset 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    min-height: 100vh;
+    background-color: $violet;
+    background-image: url('/images/bg-desktop.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+
+// content 
+body {
+    @include flex(row, center, center);
+}
+
+.container {
+    margin: 1rem;
+    width: min(90%, 150rem);
+    @include flex(column, center, center);
+}
+
+.logo-container {
+    width: 100%;
+    align-self: flex-start;
+    margin-bottom: 4em;
+    
+    .logo {
+        width: min(90%, 15rem);
+    }
+}
+
+.social-media {
+    align-self: flex-end;
+    @include flex(row, center, center);
+    gap: 2.5rem;
+    
+    .social-icon {
+        @include flex(row, center, center);
+        border-radius: 50%;
+        // background-color: antiquewhite;
+        border: .1rem solid white;
+        width: max(4rem);
+        height: max(4rem);
+        
+        transition: .2s linear;
+        cursor: pointer;
+        
+        
+        .fa-brands {
+            color: white;
+        }
+    }
+
+    .social-icon:hover {
+        border: .1rem solid $Soft-Magenta;
+
+        .fa-brands {
+            color: $Soft-Magenta;
+        }
+    }
+}
+
+.hero-container {
+    @include flex(row, center, space-between);
+    gap: 3rem;
+    margin-bottom: 2em;
+    
+    .hero-img {
+        width: min(100%, 60rem);
+    }
+    
+    .hero-content {
+        @include flex(column, flex-start, center);
+        gap: 3rem;
+        width: min(100%, 60rem);
+
+        .title {
+            font-family: $font-heading;
+            font-size: 2.8rem;
+            color: white;
+
+            width: min(100%, 40rem);
+        }
+        
+        .description {
+            font-family: $font-body;
+            font-size: 1.5rem;
+            color: white;
+
+            width: min(100%, 50rem);
+        }
+
+        .register-btn {
+            font-family: $font-heading;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: $violet;
+
+            background-color: white;
+            border-radius: 10rem;
+            box-shadow: 0 .3rem .5rem .1rem rgba(71, 20, 69, 0.473);
+            padding: .8em 3em;
+
+            transition: .2s linear;
+            cursor: pointer;
+        }
+
+        .register-btn:hover {
+            color: white;
+            background-color: $Soft-Magenta;
+        }
+    }
+
+}
+
+
+// media quearies 
+
+// 768px
+@media (max-width: $tablet) {
+    .hero-container {
+        @include flex(column, center, space-between);
+        
+        .hero-img {
+            width: min(100%, 50rem);
+        }
+    }
+}
+
+// 375px
+@media (max-width: $mobile) {
+    body {
+        background-image: url('/images/bg-mobile.svg');
+        background-size: contain;
+        background-position: top;
+    }
+
+    .hero-container {
+        .hero-content {
+            @include flex(column, center, center);
+            margin-bottom: 1.5em;
+
+            .title {
+                text-align: center;
+            }
+
+            .description {
+                text-align: center;
+            }
+        }
+    }
+
+    .social-media {
+        align-self: center;
+    }    
+}
